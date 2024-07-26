@@ -1,7 +1,14 @@
 <script>
-    const handleSubmit = async () => {
+    // import {goto} from '@sveltejs/kit/navigation';
+    const handleSubmit = async () => {    
     try {
-        const response = await fetch('/api/auth/login', {
+        // fetch('http://localhost:5000/api/v1/auth/usersearch').then(response => {
+        //     if (!response.ok) {
+        //         throw new Error(response.statusText);
+        //     }
+        //     return response
+        // }).then (data => console.log(data)).catch(error => console.log(error));
+        const response = await fetch('http://localhost:5000/api/v1/auth/login', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -11,11 +18,12 @@
         if (!response.ok) {
             throw new Error('Login failed');
         }
-        const data = await respose.JSON();
+        const data = await response.json();
         localStorage.setItem('authToken', data.token);
-        goto('/');
+        // goto('/');
     }
     catch (err){
+        console.log("error", err);  
         error = err.message;
     }
     };
@@ -25,9 +33,9 @@
 </script>
 
 <main>
-    <div class="flex items-center">
-        <img src="/images/library.jpg" alt="" class="max-h-screen max-w-prose" />
-        <div class="p-10 flex flex-col items-center space-y-2">
+    <div class="flex items-center justify-center md:justify-start content-center">
+        <img src="/images/library.jpg" alt="" class="max-h-screen max-w-prose hidden md:block" />
+        <div class="p-10 flex flex-col items-center space-y-2 h-[80vh] justify-center">
         <h1 class="font-bold text-2xl tracking-wide mb-5">
             Login to BookStellar
         </h1>
@@ -66,7 +74,7 @@
                 >Password</label
             >
             <input
-                type="password"
+                type="text"
                 id="password"
                 class="bg-gray-300 rounded-lg max-w-full py-2"
                 bind:value={password}
