@@ -8,7 +8,7 @@
     }
 </script>
 
-<a href="/">
+<a href="http://localhost:5000/api/v1/auth/google">
         <div
         class="py-[0.6rem] px-[2.3rem] my-2 bg-black text-white max-w-max rounded-3xl flex items-center space-x-2 hover:bg-slate-600 hover:text-black"
         >
