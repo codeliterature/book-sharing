@@ -1,6 +1,6 @@
 <script>
     import { onMount } from 'svelte';
-    // import { navigate } from 'svelte-routing';
+    import { goto } from '$app/navigation';
 
     onMount(() => {
         const params = new URLSearchParams(window.location.search);
@@ -8,9 +8,9 @@
 
         if (token) {
             localStorage.setItem('authToken', token);
-            // navigate('/dashboard');
+            goto('/dashboard');
         } else {
-            // navigate('/login');
+            goto('/login');
         }
     });
 </script>
