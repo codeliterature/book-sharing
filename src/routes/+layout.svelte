@@ -11,7 +11,7 @@
       <img src="/light.svg" class="me-3 h-6 sm:h-9" alt="BookStellar Logo" />
     </NavBrand>
     <div class="flex md:order-2">
-      <Button size="sm">Get started</Button>
+      <Button size="sm"><a href="/signup">Get Started</a></Button>
       <NavHamburger />
     </div>
     <NavUl class="order-1">

@@ -7,9 +7,8 @@
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY5ZTAzZmY5NTRjOGJjY2E5NjA0MTVlIiwiZW1haWwiOiJpbmF5YXRiYWtzaGkwMTZAZ21haWwuY29tIn0sImlhdCI6MTcyMTYzMTc0M30.KIAtljuMoGwWpmcEkgXxbCTXipgwKJ8JwInPzixVsG0",
-      },
+        "auth-token": localStorage.getItem("authToken")
+    },
     });
     data = await response.json();
     console.log(data);

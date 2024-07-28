@@ -1,7 +1,14 @@
 <script>
-    const handleSubmit = async () => {
+    import {goto} from '$app/navigation';
+    const handleSubmit = async () => {    
     try {
-        const response = await fetch('/api/auth/login', {
+        // fetch('http://localhost:5000/api/v1/auth/usersearch').then(response => {
+        //     if (!response.ok) {
+        //         throw new Error(response.statusText);
+        //     }
+        //     return response
+        // }).then (data => console.log(data)).catch(error => console.log(error));
+        const response = await fetch('http://localhost:5000/api/v1/auth/login', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -11,12 +18,12 @@
         if (!response.ok) {
             throw new Error('Login failed');
         }
-        const data = await respose.JSON();
+        const data = await response.json();
         localStorage.setItem('authToken', data.token);
-        goto('/');
+        goto('/dashboard');
     }
     catch (err){
-        error = err.message;
+        console.log("error", err);
     }
     };
     let username = "";
@@ -25,13 +32,13 @@
 </script>
 
 <main>
-    <div class="flex items-center">
-        <img src="/images/library.jpg" alt="" class="max-h-screen max-w-prose" />
-        <div class="p-10 flex flex-col items-center space-y-2">
+    <div class="flex items-center justify-center md:justify-start content-center">
+        <img src="/images/library.jpg" alt="" class="max-h-screen max-w-prose hidden md:block" />
+        <div class="p-10 flex flex-col items-center space-y-2 h-[80vh] justify-center">
         <h1 class="font-bold text-2xl tracking-wide mb-5">
             Login to BookStellar
         </h1>
-        <a href="/">
+        <a href="http://localhost:5000/api/v1/auth/google">
             <div
             class="py-[0.6rem] px-[2.3rem] my-2 bg-black text-white max-w-max rounded-3xl flex items-center space-x-2 hover:bg-slate-600 hover:text-black"
             >
@@ -66,16 +73,15 @@
                 >Password</label
             >
             <input
-                type="password"
+                type="text"
                 id="password"
                 class="bg-gray-300 rounded-lg max-w-full py-2"
                 bind:value={password}
                 required
             />
-            <button
+            <input
                 class="py-[0.6rem] px-[2.3rem] bg-black text-white max-w-full rounded-3xl text-center hover:bg-slate-600 hover:text-black"
-                type="submit">Login</button
-            >
+                type="submit" value="login">
             </form>
             <p class="text-center text-gray-400 text-xs mt-8">
             Don't have an account? <a href="/signup" class="underline">Sign up</a>

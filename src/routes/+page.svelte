@@ -4,6 +4,7 @@
   import {dataStore} from "../stores/dataStore";
   import { onMount } from "svelte";
   import { get } from 'svelte/store';
+  import { goto } from "$app/navigation";
   let data = get(dataStore);
 
   onMount(() => {
@@ -11,7 +12,9 @@
       data = value;
     });
   });
-
+  if (localStorage.getItem("authToken")) {
+    goto("/dashboard")
+  }
 </script>
 
   <!-- Hero section -->
@@ -63,3 +66,4 @@
         </div>
     </div>
   </section>
+
