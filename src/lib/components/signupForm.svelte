@@ -1,4 +1,5 @@
 <script>
+    import { goto } from '$app/navigation';
 export let email;
 let username = "";
 let password = "";
@@ -22,6 +23,8 @@ const handleSubmit = async () => {
     }
     let data = await response.json();
     localStorage.setItem("authToken", data.token);
+    goto("/dashboard")
+    
     } catch (err) {
     console.log("error", err);
     error = err.message;
@@ -153,12 +156,10 @@ $: passwordType = passwordVisible ? "text" : "password";
     <option value="other">Other</option>
     </select>
 
-    <button
+    <input
     class="py-[0.6rem] px-[2.3rem] bg-black text-white rounded-3xl text-center hover:bg-slate-600 hover:text-black"
     type="submit"
     >
-    Signup
-    </button>
 </form>
 </div>
 

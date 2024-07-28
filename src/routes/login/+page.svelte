@@ -1,5 +1,5 @@
 <script>
-    // import {goto} from '@sveltejs/kit/navigation';
+    import {goto} from '$app/navigation';
     const handleSubmit = async () => {    
     try {
         // fetch('http://localhost:5000/api/v1/auth/usersearch').then(response => {
@@ -20,11 +20,10 @@
         }
         const data = await response.json();
         localStorage.setItem('authToken', data.token);
-        // goto('/');
+        goto('/dashboard');
     }
     catch (err){
-        console.log("error", err);  
-        error = err.message;
+        console.log("error", err);
     }
     };
     let username = "";
@@ -80,10 +79,9 @@
                 bind:value={password}
                 required
             />
-            <button
+            <input
                 class="py-[0.6rem] px-[2.3rem] bg-black text-white max-w-full rounded-3xl text-center hover:bg-slate-600 hover:text-black"
-                type="submit">Login</button
-            >
+                type="submit" value="login">
             </form>
             <p class="text-center text-gray-400 text-xs mt-8">
             Don't have an account? <a href="/signup" class="underline">Sign up</a>
